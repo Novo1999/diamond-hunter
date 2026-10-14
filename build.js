@@ -27,6 +27,11 @@ const full = `<!doctype html>
 <meta property="og:description" content="${description}">
 <meta property="og:type" content="website">
 <link rel="icon" href="${favicon}">
+<!-- Vercel Web Analytics: the script is served by Vercel once Analytics is enabled for the project -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 ${body.slice(0, split)}</head>
 <body>
 ${body.slice(split)}</body>

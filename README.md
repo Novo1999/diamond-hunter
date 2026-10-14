@@ -42,6 +42,12 @@ vercel          # first run links the project and makes a preview deployment
 vercel --prod   # publish to your production URL
 ```
 
+### Analytics
+
+The page includes Vercel Web Analytics (page views, visitors, top pages, countries, devices). To start collecting data, open the project in the Vercel dashboard, go to the **Analytics** tab, click **Enable**, and redeploy. Until then, and when the page is opened as a local file, the analytics script fails to load quietly and the game is unaffected.
+
+### Other hosts
+
 `dist/index.html` is already built and is the only file the site needs, so it also works on any other static host (Netlify, GitHub Pages, itch.io).
 
 ## Develop
