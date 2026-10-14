@@ -6,14 +6,14 @@ The name, pixel art and all 8 levels are original. Only the style of play is bor
 
 ## Play
 
-Open `dist/index.html` in any modern browser. It is one self-contained file with no server and no install.
+Open `dist/index.html` in any modern browser. No server and no install: the page is self-contained, and `dist/bg-music.mp3` next to it provides the background music.
 
 | Action | Keyboard | Touch |
 |---|---|---|
 | Move | Arrow keys or WASD | D-pad |
 | Back to last checkpoint | R | Retry |
 | Pause | P or Esc | Pause |
-| Sound on/off | M | Sound button |
+| Sound on/off (effects and music) | M | Sound button |
 
 ## Rules
 
@@ -48,7 +48,7 @@ The page includes Vercel Web Analytics (page views, visitors, top pages, countri
 
 ### Other hosts
 
-`dist/index.html` is already built and is the only file the site needs, so it also works on any other static host (Netlify, GitHub Pages, itch.io).
+The `dist` folder is already built and holds the only two files the site needs (`index.html` and `bg-music.mp3`), so it also works on any other static host (Netlify, GitHub Pages, itch.io).
 
 ## Develop
 
@@ -67,7 +67,8 @@ Run `npm run build` after any change in `src/`. Requires Node 18 or later; there
 | `src/sprites.js` | Pixel art: 16×16 text grids for characters and items, with walls, soil and doors drawn in code. |
 | `src/game.js` | Game loop, camera, rendering, keyboard and touch input, sound, menus, saved progress. |
 | `src/shell.html` | Page markup and styles. |
-| `build.js` | Bundles everything into `dist/index.html`. |
+| `src/bg-music.mp3` | Background music. Plays at half volume while a level is running, pauses on menus and the pause screen, and follows the sound toggle. |
+| `build.js` | Bundles everything into `dist/index.html` and copies the music file into `dist`. |
 | `vercel.json` | Vercel build settings: run `npm run build`, serve `dist`. |
 | `test/solve.js` | Level checker. It searches for a winning sequence of moves and replays it to confirm. It also flags malformed maps and boulders that would fall as soon as a level starts. |
 

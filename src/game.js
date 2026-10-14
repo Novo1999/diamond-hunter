@@ -125,6 +125,22 @@
   function setMode(m) {
     mode = m;
     $('padPause').textContent = m === 'pause' ? 'Resume' : 'Pause';
+    syncMusic();
+  }
+
+  // ---------- Background music ----------
+  // Plays at half volume while a level is being played; pauses on menus, pause, death and win.
+  // Keeps its position between levels. Respects the sound toggle. Missing file fails quietly.
+  const MUSIC_VOLUME = 0.5;
+  const bgm = $('bgm');
+  bgm.volume = MUSIC_VOLUME;
+  function syncMusic() {
+    const want = mode === 'play' && !muted;
+    if (want) {
+      if (bgm.paused) { const p = bgm.play(); if (p && p.catch) p.catch(() => { /* autoplay blocked or file missing */ }); }
+    } else if (!bgm.paused) {
+      bgm.pause();
+    }
   }
 
   // ---------- Attract mode behind the title screen ----------
@@ -196,6 +212,7 @@
     writeSave();
     $('muteBtn').textContent = muted ? 'Sound: off' : 'Sound: on';
     $('muteBtn').setAttribute('aria-pressed', String(muted));
+    syncMusic();
     if (!muted) SFX.gem();
   }
   $('muteBtn').textContent = muted ? 'Sound: off' : 'Sound: on';

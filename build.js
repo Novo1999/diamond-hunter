@@ -41,6 +41,10 @@ ${body.slice(split)}</body>
 fs.mkdirSync(path.join(__dirname, 'dist'), { recursive: true });
 fs.writeFileSync(path.join(__dirname, 'dist', 'index.html'), full);
 console.log(`built dist/index.html (${(full.length / 1024).toFixed(1)} KB)`);
+// The background music is served as a separate file next to the page (too large to inline)
+const music = 'bg-music.mp3';
+fs.copyFileSync(path.join(__dirname, 'src', music), path.join(__dirname, 'dist', music));
+console.log(`copied dist/${music}`);
 
 const ai = process.argv.indexOf('--artifact');
 if (ai > 0 && process.argv[ai + 1]) {
